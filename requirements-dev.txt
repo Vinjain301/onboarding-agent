@@ -1,0 +1,7 @@
+# Development and CI tooling, on top of runtime dependencies.
+# Install with: pip install -r requirements-dev.txt
+
+-r requirements.txt
+
+pytest==9.1.1
+ruff==0.16.6

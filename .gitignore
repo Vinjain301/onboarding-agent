@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+faiss_index/
+escalations.jsonl
+.pytest_cache/
+.ruff_cache/
+.streamlit/
+*.log

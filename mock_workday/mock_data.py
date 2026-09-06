@@ -1,0 +1,101 @@
+"""Static sample data standing in for a real Workday tenant."""
+
+EMPLOYEES = [
+    {
+        "employee_id": "E1001",
+        "full_name": "Priya Nathan",
+        "role": "Software Engineer",
+        "department": "Engineering",
+        "location": "New York, NY",
+        "work_location_type": "Hybrid",
+        "start_date": "2026-07-14",
+        "manager": "Alex Rivera",
+        "manager_email": "alex.rivera@northlightsystems.example",
+        "employment_type": "Full-Time",
+    },
+    {
+        "employee_id": "E1002",
+        "full_name": "Jordan Blake",
+        "role": "Data Analyst",
+        "department": "Data",
+        "location": "Remote - US",
+        "work_location_type": "Remote",
+        "start_date": "2026-07-21",
+        "manager": "Sam Osei",
+        "manager_email": "sam.osei@northlightsystems.example",
+        "employment_type": "Full-Time",
+    },
+    {
+        "employee_id": "E1003",
+        "full_name": "Marco Lindqvist",
+        "role": "Account Executive",
+        "department": "Sales",
+        "location": "Chicago, IL",
+        "work_location_type": "Hybrid",
+        "start_date": "2026-08-03",
+        "manager": "Dana Whitfield",
+        "manager_email": "dana.whitfield@northlightsystems.example",
+        "employment_type": "Full-Time",
+    },
+    {
+        "employee_id": "E1004",
+        "full_name": "Chidinma Okoro",
+        "role": "HR Coordinator",
+        "department": "HR",
+        "location": "Austin, TX",
+        "work_location_type": "Onsite",
+        "start_date": "2026-07-07",
+        "manager": "Renee Castillo",
+        "manager_email": "renee.castillo@northlightsystems.example",
+        "employment_type": "Full-Time",
+    },
+    {
+        "employee_id": "E1005",
+        "full_name": "Wei Zhang",
+        "role": "Software Engineer",
+        "department": "Engineering",
+        "location": "Remote - US",
+        "work_location_type": "Remote",
+        "start_date": "2026-07-28",
+        "manager": "Alex Rivera",
+        "manager_email": "alex.rivera@northlightsystems.example",
+        "employment_type": "Full-Time",
+    },
+    {
+        "employee_id": "E1006",
+        "full_name": "Sofia Ramirez",
+        "role": "Data Analyst",
+        "department": "Data",
+        "location": "New York, NY",
+        "work_location_type": "Hybrid",
+        "start_date": "2026-07-14",
+        "manager": "Sam Osei",
+        "manager_email": "sam.osei@northlightsystems.example",
+        "employment_type": "Full-Time",
+    },
+]
+
+# Role-specific metadata that does not live in the HR documents but would come
+# from real Workday job profile / provisioning data in production.
+ROLE_PROFILES = {
+    "Software Engineer": {
+        "department": "Engineering",
+        "default_systems": ["GitHub", "Jira", "Confluence", "AWS sandbox", "PagerDuty", "Datadog"],
+        "required_training_days": 14,
+    },
+    "Data Analyst": {
+        "department": "Data",
+        "default_systems": ["Snowflake", "Tableau", "dbt Cloud", "Confluence", "Metrics Catalog"],
+        "required_training_days": 14,
+    },
+    "Account Executive": {
+        "department": "Sales",
+        "default_systems": ["Salesforce", "Outreach", "Gong", "Pricing Tool", "Slack"],
+        "required_training_days": 14,
+    },
+    "HR Coordinator": {
+        "department": "HR",
+        "default_systems": ["Workday HCM", "HR Case Management", "Background Check Portal", "Confluence"],
+        "required_training_days": 14,
+    },
+}

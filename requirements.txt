@@ -1,0 +1,21 @@
+# Runtime dependencies, pinned to exact versions verified to work together.
+#
+# Rationale: an earlier draft of this project used open-ended ranges
+# (for example "langchain>=0.3.0"). A routine `pip install` later resolved
+# to LangChain 1.3, a major version that removed APIs this project depended
+# on (langchain.output_parsers.OutputFixingParser) without warning at
+# install time. Exact pins make installs reproducible and turn breaking
+# upstream changes into a deliberate, tested upgrade rather than a silent
+# one. Update versions intentionally, then re-run the test suite.
+
+langchain==1.3.12
+langchain-openai==1.3.5
+langchain-community==0.4.2
+langchain-text-splitters==1.1.2
+langchain-huggingface==1.2.2
+openai==2.45.0
+sentence-transformers==5.6.0
+faiss-cpu==1.14.3
+streamlit==1.59.1
+pydantic==2.13.4
+python-dotenv==1.2.2
