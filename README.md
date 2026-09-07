@@ -137,11 +137,12 @@ This repository includes `render.yaml`, a Render Blueprint that defines the web
 service declaratively so it can be deployed without manual dashboard
 configuration.
 
-1. Push this repository to GitHub (see the Installation section for local setup
-   first, if not already done).
-2. In the Render dashboard, choose **New > Blueprint** and select this
-   repository. Render will read `render.yaml` and propose the service
-   configuration automatically.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Vinjain301/onboarding-agent)
+
+1. Click the button above, or in the Render dashboard choose **New > Blueprint**
+   and select this repository directly.
+2. Render will read `render.yaml` and propose the service configuration
+   automatically.
 3. When prompted, set `OPENROUTER_API_KEY` to your OpenRouter key. This value is
    deliberately excluded from `render.yaml` (`sync: false`) so it is entered
    directly in the dashboard rather than stored in source control.
