@@ -1,5 +1,8 @@
 # Intelligent New Hire Onboarding Agent
 
+Live demo: not yet deployed. See [Deployment](#deployment) below for how this
+project deploys to Render; once deployed, the live URL will be linked here.
+
 An AI-assisted onboarding tool that answers new-hire questions and generates
 personalized 30/60/90-day onboarding plans. It combines a retrieval-augmented
 generation (RAG) pipeline over HR policies, benefits guides, standard operating
@@ -127,6 +130,49 @@ The FAISS index is built automatically on first run and cached to
 ```bash
 python scripts/build_index.py
 ```
+
+## Deployment
+
+This repository includes `render.yaml`, a Render Blueprint that defines the web
+service declaratively so it can be deployed without manual dashboard
+configuration.
+
+1. Push this repository to GitHub (see the Installation section for local setup
+   first, if not already done).
+2. In the Render dashboard, choose **New > Blueprint** and select this
+   repository. Render will read `render.yaml` and propose the service
+   configuration automatically.
+3. When prompted, set `OPENROUTER_API_KEY` to your OpenRouter key. This value is
+   deliberately excluded from `render.yaml` (`sync: false`) so it is entered
+   directly in the dashboard rather than stored in source control.
+4. Deploy. The build step installs `requirements.txt`; the start command runs
+   Streamlit bound to the port Render assigns.
+5. Once the deploy finishes, Render provides a public URL. Add that URL to the
+   "Live demo" line at the top of this README.
+
+To configure the service manually instead of using the Blueprint, use these
+settings:
+
+| Setting | Value |
+|---|---|
+| Runtime | Python 3.11.9 (see `.python-version`) |
+| Build command | `pip install -r requirements.txt` |
+| Start command | `streamlit run streamlit_app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true --browser.gatherUsageStats=false` |
+| Environment variables | Same keys as `.env.example` |
+
+### Resource considerations on Render's free tier
+
+`sentence-transformers` depends on PyTorch, which has a meaningful memory
+footprint before the application even starts serving requests. Combined with
+FAISS, LangChain, and Streamlit, this may approach or exceed the RAM ceiling on
+Render's free tier; check Render's current free-tier limits before assuming it
+fits. The free tier also spins the service down after a period of inactivity,
+so the first request after idle time will be slow while the service restarts
+and the FAISS index rebuilds from `data/`. If memory becomes a problem, the
+practical options are: upgrade to a paid Render plan with more RAM, or replace
+the local sentence-transformer embedding model with a smaller model or a
+hosted embeddings API (this would require updating `get_embeddings()` in
+`app/rag_pipeline.py` and is not implemented in this repository).
 
 ## Running tests
 

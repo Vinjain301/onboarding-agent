@@ -1,0 +1,34 @@
+# Render Blueprint: defines the web service declaratively so the app can be
+# deployed with "New > Blueprint" in the Render dashboard, pointed at this
+# repository, rather than configuring each setting by hand.
+#
+# Secrets (OPENROUTER_API_KEY) are intentionally left out of this file
+# (sync: false) so Render prompts for them in the dashboard instead of
+# storing them in source control.
+services:
+  - type: web
+    name: onboarding-agent
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: >-
+      streamlit run streamlit_app.py
+      --server.port=$PORT
+      --server.address=0.0.0.0
+      --server.headless=true
+      --browser.gatherUsageStats=false
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: CHAT_MODEL
+        value: minimax/minimax-m3:free
+      - key: CHAT_MODEL_FALLBACKS
+        value: liquid/lfm-2.5-2.6b:free
+      - key: EMBEDDING_MODEL
+        value: sentence-transformers/all-MiniLM-L6-v2
+      - key: CONFIDENCE_THRESHOLD
+        value: "0.35"
